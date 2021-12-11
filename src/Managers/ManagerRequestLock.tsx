@@ -1,7 +1,22 @@
+import { Modal, Button } from "react-bootstrap";
 
 const RequestLockComponent = (props:any) => {
     return(<>
-<div className="modal fade" id="requestLock" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <Modal show={props.showModal} onHide={props.handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={props.handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={props.handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+{/* <div className="modal fade" id="requestLock" aria-labelledby="exampleModalLabel" aria-hidden="true" show={props.showModal} onHide={props.handleClose}>
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
@@ -19,7 +34,7 @@ const RequestLockComponent = (props:any) => {
       </div>
     </div>
   </div>
-</div>
+</div> */}
    </>)
 }
 export default RequestLockComponent;
