@@ -4,6 +4,8 @@ import {useEffect,useState} from "react"
 import ManagerService from "../services/ManagerService";
 import { EmployeeProps } from "./Employee";
 import { Modal, Button } from "react-bootstrap";
+import Logout from "../Logout";
+import Login from '../Login';
 
 interface PageState {
     skip: number;
@@ -12,21 +14,26 @@ interface PageState {
   
 const initialDataState: PageState = { skip: 0, take: 10 };
 
-const ManagerHome=()=>{
+const ManagerHome=({ children, ...rest }:any)=>{
 
     const [data, setData] = React.useState<EmployeeProps[]>([])
     const [page, setPage] = React.useState<PageState>(initialDataState);
     const [showModal, setShow] = useState(false);
     const [EmployeeId, setEmployeeId] = useState(0);
- 
+    
     useEffect(() => {        
-      ManagerService.getEmployeesManager("faizal")
+      ManagerService.getEmployeesManager("karan")
       .then(response => {
         setData(response)
+       console.log(response);
       })
     },[])
-
-    const handleClose = () => setShow(false);
+    
+    const handleClose = (e:any) => {
+      setShow(false);
+     // e.preventDefault(console.log("refresh"))
+     //e.stopImmediatePropagation()
+    }
     const handleShow = (Id:any) => 
     {
       console.log(Id)
@@ -40,12 +47,13 @@ const ManagerHome=()=>{
 
     const MyCustomCell = (props: GridCellProps | any) => (
      // console.log(props.data)
-      <td><button className='customEdit RequestLockButton' type="button" onClick={ (Id) => handleShow(props.dataItem.EmployeeId)}>
+      <td><button className='customEdit RequestLockButton' type="button" onClick={ () => handleShow(props.dataItem.EmployeeId)}>
         <span className="fa fa-lock mr-2"></span>Request Lock</button></td>
     );
-    return (<>    
+    return (<>     
         <h4 className="text-center mb-4">Manager Home Screen</h4>
-        <h5 className="Headings">Managers Request Lock Table</h5>
+        <h5 className="Headings">Managers Request Lock Table</h5> 
+        <Logout/>
         <Grid
              data={data.slice(page.skip, page.take + page.skip)}
              skip={page.skip}

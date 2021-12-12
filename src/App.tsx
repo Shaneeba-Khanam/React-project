@@ -13,6 +13,7 @@ const App=()=>{
           <LoginHOC/>
         </Route>
         <ProtectedRoute path="/home" >
+         
           <ManagerHome/>
         </ProtectedRoute>
         <Route exact path="/">

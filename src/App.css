@@ -75,6 +75,9 @@ span {
   text-decoration: underline;
 }
 /*Grid Styles*/
+.k-grid {
+  width:100%;
+}
 .k-grid .k-grid-header{
   background-color: #586d99;
   color: #fff;
