@@ -1,18 +1,17 @@
 import axios from "axios"
-const getEmployeesManager = (username: any) : Promise<any> => 
+const getManager = (username: any) : Promise<any> => 
 {
-    return new Promise((resolve,reject)=> 
+    return new Promise((onSucess,onFailure)=> 
     {
         axios.post("http://localhost:8000/employees/manager/" + username).then(response=>
         {    
-            //console.log("getting data or not") 
-            console.log(response.data)       
-            resolve(response.data)
+            //console.log(response.data)       
+            onSucess(response.data)
         }).catch(error=> {
-            reject(error)
+            onFailure(error)
         });
     });
 };
 
-//export default getEmployeesManager;
-export default { getEmployeesManager }
+// export default getManager;
+export default {getManager}

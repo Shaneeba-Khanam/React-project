@@ -1,20 +1,20 @@
 import React from 'react';
-import './App.css';
+import logo from './logo.svg';
+import './App.scss';
 import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
 import ProtectedRoute from './ProtectedRoute';
 import LoginHOC from './Redux/HOC/LoginHOC';
-import ManagerHome from './Managers/Home';
+//import Logout from './Logout';
 
 const App=()=>{
-     return(<div className="App">
+     return(
     <Router>
       <Switch>
         <Route path="/login">
           <LoginHOC/>
         </Route>
-        <ProtectedRoute path="/home" >
-         
-          <ManagerHome/>
+        <ProtectedRoute path="/home">
+      
         </ProtectedRoute>
         <Route exact path="/">
           <Redirect exact from="/" to="home" />
@@ -24,6 +24,6 @@ const App=()=>{
         </Route>
       </Switch>
     </Router>
-    </div>)
+     )
 }
 export default App;
